@@ -38,6 +38,9 @@ nnoremap <Leader>, :noh<CR>
 
 "nnoremap <Leader>p :silent !cav<CR>
 autocmd FileType tex nnoremap <Leader>p :silent !cav<CR>
+" set jk to  gj gk for easier text movement when writing prose
+autocmd FileType tex nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+autocmd FileType tex nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 "--- GENERAL CONFIG ---
 colorscheme gruvbox

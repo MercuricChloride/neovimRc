@@ -18,6 +18,9 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Goyo for distraction free writing 
     Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+    "Formatter
+    Plug 'sbdchd/neoformat'
 call plug#end()
 let mapleader=","
 
@@ -41,6 +44,12 @@ autocmd FileType tex nnoremap <Leader>p :silent !cav<CR>
 " set jk to  gj gk for easier text movement when writing prose
 autocmd FileType tex nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 autocmd FileType tex nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+autocmd FileType tex set spell spelllang=en_us
+
+"---LIMELIGHT CONFIGURATION---
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight! 
+let g:limelight_conceal_ctermfg = 'gray'
 
 "--- GENERAL CONFIG ---
 colorscheme gruvbox

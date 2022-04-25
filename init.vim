@@ -33,7 +33,7 @@ nnoremap <Leader>f :Telescope find_files<CR>
 "grep string
 nnoremap <Leader>g :Telescope grep_string<CR>
 "Toggle goyo
-nnoremap <Leader>z :Goyo<CR>
+nnoremap <Leader>z :Goyo 85%x85%<CR>
 "remove highlighting
 nnoremap <Leader>, :noh<CR>
 
@@ -44,6 +44,7 @@ autocmd FileType tex nnoremap <Leader>p :silent !cav<CR>
 " set jk to  gj gk for easier text movement when writing prose
 autocmd FileType tex nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 autocmd FileType tex nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+" spell check
 autocmd FileType tex set spell spelllang=en_us
 
 "---LIMELIGHT CONFIGURATION---

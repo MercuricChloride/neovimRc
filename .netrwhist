@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/honk/Documents/GitHub/agingNFT/packages/hardhat/contracts'
+let g:netrw_dirhist_8='/home/honk/Documents/GitHub/agingNFT/packages/hardhat'
+let g:netrw_dirhist_7='/home/honk/Documents/GitHub/agingNFT/packages'
+let g:netrw_dirhist_6='/home/honk/Documents/GitHub/agingNFT'
+let g:netrw_dirhist_5='/home/honk/Documents/GitHub/Bonez/packages/hardhat/contracts'
+let g:netrw_dirhist_4='/home/honk/Documents/GitHub/Bonez/packages/hardhat'
+let g:netrw_dirhist_3='/home/honk/Documents/GitHub/Bonez/packages'
+let g:netrw_dirhist_2='/home/honk/Documents/GitHub/Bonez/packages/react-app'
+let g:netrw_dirhist_1='/home/honk/Documents/GitHub/Bonez/packages'
+let g:netrw_dirhist_0='/home/honk/Documents/GitHub/Bonez'

@@ -1,10 +1,12 @@
 " plugin path
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
+
+" ---PLUGINS---
 call plug#begin()
     "solidity plugin
     Plug 'tomlion/vim-solidity'
-    "Nice file explorer, better than default
+    "Nice file explorer
     Plug 'preservim/nerdtree'
     "Fuzzy searching
     Plug 'nvim-lua/plenary.nvim'
@@ -14,16 +16,32 @@ call plug#begin()
     Plug 'morhetz/gruvbox'
     "autocomplete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "Goyo for distraction free writing 
+    Plug 'junegunn/goyo.vim'
 call plug#end()
 let mapleader=","
+
+"--- PLUGIN SPECIFIC MAPPINGS ---
+
 "open tree
 nnoremap <Leader>t :NERDTreeToggle<CR>
 "open fuzzy finder
 nnoremap <Leader>f :Telescope find_files<CR>
+"grep string
+nnoremap <Leader>g :Telescope grep_string<CR>
+"Toggle goyo
+nnoremap <Leader>z :Goyo<CR>
 "remove highlighting
 nnoremap <Leader>, :noh<CR>
+
+"---LATEX CONFIGURATION---
+
+"nnoremap <Leader>p :silent !cav<CR>
+autocmd FileType tex nnoremap <Leader>p :silent !cav<CR>
+
+"--- GENERAL CONFIG ---
 colorscheme gruvbox
-set number
+set relativenumber
 set noswapfile
 set tabstop=4
 set shiftwidth=4

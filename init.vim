@@ -54,7 +54,6 @@ let g:limelight_conceal_ctermfg = 'gray'
 
 "--- GENERAL CONFIG ---
 colorscheme gruvbox
-set relativenumber
 set noswapfile
 set tabstop=4
 set shiftwidth=4

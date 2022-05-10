@@ -1,0 +1,11 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "markdown"],
+  "solidity.includePath": "./packages/hardhat/node_modules",
+  "languageserver":{
+      "graphql": {
+        "command": "graphql-lsp",
+        "args": ["server", "-m", "stream"],
+        "filetypes": ["typescript", "typescriptreact", "graphql"]
+      }
+  } 
+}

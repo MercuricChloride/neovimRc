@@ -19,8 +19,10 @@ call plug#begin()
     "Goyo for distraction free writing 
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
-    "Formatter
-    Plug 'sbdchd/neoformat'
+    " auto brackets
+    Plug 'jiangmiao/auto-pairs'
+    " status bar
+    Plug 'vim-airline/vim-airline'
 call plug#end()
 let mapleader=","
 
@@ -44,6 +46,8 @@ autocmd FileType tex nnoremap <Leader>p :silent !cav<CR>
 " set jk to  gj gk for easier text movement when writing prose
 autocmd FileType tex nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 autocmd FileType tex nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+autocmd FileType md nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+autocmd FileType md nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " spell check
 autocmd FileType tex set spell spelllang=en_us
 
@@ -63,9 +67,39 @@ set smarttab
 set ignorecase
 set hlsearch
 set incsearch
-"COC Config
-if exists('*complete_info')
-  inoremap <silent><expr> <cr> complete_info(['selected'])['selected'] != -1 ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"--- COC Config ---
+
+" tab completion ala vs-code
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" C-j and C-k menu movement ala spacemacs
+inoremap <silent><expr> <C-j>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<C-j>" :
+      \ coc#refresh()
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+"Snippet mapping
+nnoremap <Leader>e :CocList snippets <CR>

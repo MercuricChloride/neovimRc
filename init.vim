@@ -23,7 +23,9 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     " status bar
     Plug 'vim-airline/vim-airline'
-call plug#end()
+    " Emmet vim
+    Plug 'mattn/emmet-vim'
+    call plug#end()
 let mapleader=","
 
 "--- PLUGIN SPECIFIC MAPPINGS ---

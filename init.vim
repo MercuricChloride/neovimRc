@@ -16,7 +16,7 @@ call plug#begin()
     Plug 'morhetz/gruvbox'
     "autocomplete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    "Goyo for distraction free writing 
+    "Goyo for distraction free prose writing 
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/limelight.vim'
     " auto brackets
@@ -25,6 +25,8 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     " Emmet vim
     Plug 'mattn/emmet-vim'
+    "GraphQL plugin
+    Plug 'jparise/vim-graphql'
     call plug#end()
 let mapleader=","
 
@@ -69,6 +71,7 @@ set smarttab
 set ignorecase
 set hlsearch
 set incsearch
+set textwidth=140
 
 "--- COC Config ---
 
@@ -105,3 +108,12 @@ inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 "Snippet mapping
 nnoremap <Leader>e :CocList snippets <CR>
+
+"jump to definitons cross file
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+"Prettier
+vmap <C-f>  <Plug>(coc-format-selected)

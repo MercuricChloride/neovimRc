@@ -6,8 +6,6 @@ let &packpath = &runtimepath
 call plug#begin()
     "solidity plugin
     Plug 'tomlion/vim-solidity'
-    "Nice file explorer
-    Plug 'preservim/nerdtree'
     "Fuzzy searching
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -27,19 +25,26 @@ call plug#begin()
     Plug 'mattn/emmet-vim'
     "GraphQL plugin
     Plug 'jparise/vim-graphql'
+    "Copilot
+    Plug 'github/copilot.vim'
+    "Codi js repl
+    Plug 'metakirby5/codi.vim'
+    "Ranger
+    Plug 'francoiscabrol/ranger.vim'
+    Plug 'rbgrouleff/bclose.vim'
+    " vim-elixir
+    Plug 'elixir-editors/vim-elixir'
     call plug#end()
-let mapleader=","
+let mapleader = ","
 
 "--- PLUGIN SPECIFIC MAPPINGS ---
 
-"open tree
-nnoremap <Leader>t :NERDTreeToggle<CR>
 "open fuzzy finder
 nnoremap <Leader>f :Telescope find_files<CR>
 "grep string
-nnoremap <Leader>g :Telescope grep_string<CR>
+nnoremap <Leader>g :Telescope live_grep<CR>
 "Toggle goyo
-nnoremap <Leader>z :Goyo 85%x85%<CR>
+nnoremap <Leader>z :Goyo<CR>
 "remove highlighting
 nnoremap <Leader>, :noh<CR>
 
@@ -57,21 +62,26 @@ autocmd FileType tex set spell spelllang=en_us
 
 "---LIMELIGHT CONFIGURATION---
 autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight! 
+autocmd! User GoyoLeave Limelight!
 let g:limelight_conceal_ctermfg = 'gray'
 
 "--- GENERAL CONFIG ---
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme default
 set number
 set noswapfile
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 set ignorecase
 set hlsearch
 set incsearch
 set textwidth=140
+set mouse=a
+set relativenumber
+set hidden
+colorscheme gruvbox
 
 "--- COC Config ---
 
@@ -107,7 +117,11 @@ inoremap <silent><expr> <C-j>
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 "Snippet mapping
-nnoremap <Leader>e :CocList snippets <CR>
+nnoremap <Leader>e :CocCommand snippets.editSnippets<CR>
+"Restart Coc
+nnoremap <silent><Leader>r :CocRestart<CR>
+"CocList
+nnoremap <Leader>l :CocList<CR>
 
 "jump to definitons cross file
 nmap <silent> gd <Plug>(coc-definition)
@@ -117,3 +131,21 @@ nmap <silent> gr <Plug>(coc-references)
 
 "Prettier
 vmap <C-f>  <Plug>(coc-format-selected)
+
+"Github copilot autocomplete bindings
+nmap <silent> <Leader>c :Copilot<CR>
+
+"Ranger
+nmap <silent> <Leader>d :Ranger<CR>
+
+"Open a terminal in a new tab
+nmap <silent> <Leader>t :tabnew <bar> :terminal <CR> <bar> i
+
+command Scaffold call ScaffoldStartup()
+
+function ScaffoldStartup() 
+  echo "Get Buidlin"
+  terminal
+  normal i
+  normal yarn start
+endfunction

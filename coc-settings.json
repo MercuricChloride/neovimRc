@@ -1,5 +1,11 @@
 {
   "coc.preferences.jumpCommand": "tabe",
   "coc.preferences.formatOnSaveFiletypes": ["javascript", "markdown"],
-  "solidity.includePath": "./packages/hardhat/node_modules"
+  "solidity.includePath": "./lib/",
+  "solidity.includePath": "./packages/hardhat/node_modules/",
+  "solidity.remapping": {
+    "forge-std":"lib/forge-std/src",
+    //"ds-test":"forge-std/lib/ds-test/src"
+    "ds-test/":"ds-test/src/"
+  }
 }

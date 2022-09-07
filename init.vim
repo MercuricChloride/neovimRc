@@ -12,6 +12,7 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     "colorscheme
     Plug 'morhetz/gruvbox'
+    Plug 'arcticicestudio/nord-vim'
     "autocomplete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Goyo for distraction free prose writing 
@@ -39,6 +40,9 @@ let mapleader = ","
 
 "--- PLUGIN SPECIFIC MAPPINGS ---
 
+"Ranger
+let g:ranger_map_keys = 0
+nnoremap <silent> <Leader>d :Ranger<CR>
 "open fuzzy finder
 nnoremap <Leader>f :Telescope find_files<CR>
 "grep string
@@ -66,8 +70,7 @@ autocmd! User GoyoLeave Limelight!
 let g:limelight_conceal_ctermfg = 'gray'
 
 "--- GENERAL CONFIG ---
-"colorscheme gruvbox
-colorscheme default
+colorscheme gruvbox
 set number
 set noswapfile
 set tabstop=2
@@ -81,7 +84,6 @@ set textwidth=140
 set mouse=a
 set relativenumber
 set hidden
-colorscheme gruvbox
 
 "--- COC Config ---
 
@@ -135,17 +137,18 @@ vmap <C-f>  <Plug>(coc-format-selected)
 "Github copilot autocomplete bindings
 nmap <silent> <Leader>c :Copilot<CR>
 
-"Ranger
-nmap <silent> <Leader>d :Ranger<CR>
-
 "Open a terminal in a new tab
 nmap <silent> <Leader>t :tabnew <bar> :terminal <CR> <bar> i
 
 command Scaffold call ScaffoldStartup()
 
-function ScaffoldStartup() 
-  echo "Get Buidlin"
+function ScaffoldStartup()
   terminal
-  normal i
-  normal yarn start
+  call feedkeys("iyarn start\<CR>\<C-\>\<C-N>")
+  tabnew
+  terminal
+  call feedkeys("iyarn chain\<CR>\<C-\>\<C-N>")
+  tabnew
+  terminal
+  call feedkeys("iyarn deploy\<CR>\<C-\>\<C-N>")
 endfunction
